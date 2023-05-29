@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/distance_calculator/static/css/main.e6c13ad2.css",
-    "main.js": "/distance_calculator/static/js/main.abb7bb3e.js",
+    "main.js": "/distance_calculator/static/js/main.186fe674.js",
     "static/js/787.c3d8a87e.chunk.js": "/distance_calculator/static/js/787.c3d8a87e.chunk.js",
     "index.html": "/distance_calculator/index.html",
     "main.e6c13ad2.css.map": "/distance_calculator/static/css/main.e6c13ad2.css.map",
-    "main.abb7bb3e.js.map": "/distance_calculator/static/js/main.abb7bb3e.js.map",
+    "main.186fe674.js.map": "/distance_calculator/static/js/main.186fe674.js.map",
     "787.c3d8a87e.chunk.js.map": "/distance_calculator/static/js/787.c3d8a87e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.abb7bb3e.js"
+    "static/js/main.186fe674.js"
   ]
 }
