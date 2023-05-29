@@ -8,8 +8,7 @@ import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
 
 export default function App() {
   return (
-      <RouterProvider router={Router} >
+      <RouterProvider router={Router} />
 
-      </RouterProvider>
   );
 }

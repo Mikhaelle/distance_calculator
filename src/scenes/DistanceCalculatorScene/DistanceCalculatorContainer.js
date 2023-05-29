@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {Header} from '../../components/header/Header'
 import { DistanceCalculatorPresenter } from "./DistanceCalculatorPresenter";
 import { NominatimService }  from "../../services/NominatimService/nominatimService"
+import { LocalStorageService }  from "../../services/LocalStorageService/LocalStorageService"
+
 export const DistanceCalculatorContainer = () => {
     const navigate = useNavigate();
     const nominatimService = NominatimService.getInstance();
+    const localStorageService = LocalStorageService.getInstance();
 
     const [sourceAddress, setSourceAddress] = useState('');
     const [destinationAddress, setDestinationAddress] = useState('');
     const [coordinates, setCoordinates] = useState(null);
     const [distanceCalculated, setDistanceCalculated] = useState(null);
-
 
     const handleSearch = async () => {
         try {
@@ -30,7 +32,7 @@ export const DistanceCalculatorContainer = () => {
             console.error('Error fetching coordinates:', error);
         }
     };
-
+    
     const handleNavigate = () => {
         navigate('/results');
     }
@@ -55,8 +57,9 @@ export const DistanceCalculatorContainer = () => {
             Math.sin(lonDiff / 2) * Math.sin(lonDiff / 2);
 
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        const distance = earthRadius * c;
-        setDistanceCalculated(distance.toFixed(2));
+        const distance = (earthRadius * c).toFixed(2);
+        setDistanceCalculated(distance);
+        localStorageService.saveSearchInfosInLocalStorage(sourceAddress, destinationAddress, distance)
     }
 
 

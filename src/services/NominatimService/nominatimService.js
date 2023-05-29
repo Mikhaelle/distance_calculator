@@ -23,7 +23,6 @@ export class NominatimService {
         };
         try {
             const response = await this._bearerProvider.get('', queryParams);
-            console.log(response.data)
             return response.data;
         } catch (err) {
             throw err;
