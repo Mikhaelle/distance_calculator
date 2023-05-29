@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const SearchCalculationsScene = () => {
+export const CalculationsResultsScene = () => {
     return (
         <div>
             <h1>Sobre</h1>
