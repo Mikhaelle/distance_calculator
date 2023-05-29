@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const DistanceCalculatorScene = () => {
+import {Header} from '../../components/header/Header'
+import { DistanceCalculatorPresenter } from "./DistanceCalculatorPresenter";
+
+export const DistanceCalculatorContainer = () => {
     const navigate = useNavigate();
 
     const [sourceAddress, setSourceAddress] = useState('');
@@ -29,22 +32,18 @@ export const DistanceCalculatorScene = () => {
     }
 
     return (
-        <div>
-            <input
-                type="text"
-                value={sourceAddress}
-                onChange={(e) => setSourceAddress(e.target.value)}
-                placeholder="Source Address"
+        <>
+            <Header />
+            <DistanceCalculatorPresenter
+                sourceAddress={sourceAddress}
+                setSourceAddress={setSourceAddress}
+                destinationAddress={destinationAddress}
+                setDestinationAddress={setDestinationAddress}
+                handleSearch={handleSearch}
+                handleNavigate={handleNavigate}
             />
-            <input
-                type="text"
-                value={destinationAddress}
-                onChange={(e) => setDestinationAddress(e.target.value)}
-                placeholder="Destination Address"
-            />
-            <button onClick={handleSearch}>Search</button>
-            <button onClick={handleNavigate}>View Results</button>
-        </div>
+        </>
     );
+
 };
 

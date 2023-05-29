@@ -1,12 +1,12 @@
 import React from "react";
 import {createHashRouter} from "react-router-dom";
-import {DistanceCalculatorScene} from "./scenes/DistanceCalculatorScene/DistanceCalculatorScene";
+import {DistanceCalculatorContainer} from "./scenes/DistanceCalculatorScene/DistanceCalculatorContainer";
 import {CalculationsResultsScene} from "./scenes/CalculationsResultsScene/CalculationsResultsScene";
 
 export const Router = createHashRouter([
         {
             path: "/",
-            element: <DistanceCalculatorScene/>,
+            element: <DistanceCalculatorContainer/>,
 
         },
         {
