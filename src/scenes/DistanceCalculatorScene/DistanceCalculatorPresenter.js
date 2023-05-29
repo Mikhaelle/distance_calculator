@@ -11,7 +11,8 @@ export const DistanceCalculatorPresenter = ({
     destinationAddress,
     setDestinationAddress,
     handleSearch,
-    handleNavigate
+    handleNavigate,
+    distanceCalculated
 }) => {
     return (
         <Grid sx={{width: '100%', paddingTop: '60px'}}>
@@ -55,16 +56,21 @@ export const DistanceCalculatorPresenter = ({
                 justifyContent="center"
                 sx={{padding:"30px"}}
             >
-                <Button variant="contained" disableElevation sx={{color:'#eeeee4', backgroundColor:'#e28743'}}>Calculate distance</Button>
+                <Button variant="contained" disableElevation sx={{color:'#eeeee4', backgroundColor:'#e28743'}}
+                        onClick={() => {
+                            handleSearch();
+                        }}>
+                    Calculate distance
+                </Button>
             </Grid>
+            {distanceCalculated &&
             <Grid
                 container
                 alignItems="center"
                 justifyContent="center"
-                sx={{padding:"10px"}}
             >
-                <h2>300KM</h2>
-            </Grid>
+                <h2>{distanceCalculated + " km"}</h2>
+            </Grid>}
         </Grid>
 
     );
