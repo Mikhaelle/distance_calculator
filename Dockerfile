@@ -11,8 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the app's source code to the working directory
-COPY web-distance-calculator .
-
+COPY . .
 # Build the app
 RUN npm run build
 
@@ -23,5 +22,5 @@ EXPOSE 3000
 CMD ["npm", "start"]
 
 # to initiate docker
-#docker build -t web-distance-calculator .
-#docker run -p 3000:3000 web-distance-calculator
+#docker build -t distance-calculator .
+#docker run -p 3000:3000 distance-calculator
