@@ -1,9 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {Header} from '../../components/header/Header'
 import { DistanceCalculatorPresenter } from "./DistanceCalculatorPresenter";
-import { NominatimService }  from "../../services/NominatimService/nominatimService"
+import { NominatimService }  from "../../services/NominatimService/NominatimService"
 import { LocalStorageService }  from "../../services/LocalStorageService/LocalStorageService"
 
 export const DistanceCalculatorContainer = () => {
@@ -13,29 +13,34 @@ export const DistanceCalculatorContainer = () => {
 
     const [sourceAddress, setSourceAddress] = useState('');
     const [destinationAddress, setDestinationAddress] = useState('');
-    const [coordinates, setCoordinates] = useState(null);
     const [distanceCalculated, setDistanceCalculated] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [openModalError, setOpenModalError] = useState(false);
+
+    const handleOpenModalError = () => setOpenModalError(true);
+    const handleCloseModalError = () => setOpenModalError(false);
+    
 
     const handleSearch = async () => {
         try {
+            setIsLoading(true)
             const sourceData = await nominatimService.getPlaceInfos(sourceAddress)
             const destinationData = await nominatimService.getPlaceInfos(destinationAddress);
 
             const sourceCoordinates = sourceData.length > 0 ? [sourceData[0].lon, sourceData[0].lat] : null;
             const destinationCoordinates = destinationData.length > 0 ? [destinationData[0].lon, destinationData[0].lat] : null;
-
-            setCoordinates({ source: sourceCoordinates, destination: destinationCoordinates });
-
+            
             calculateDistance(sourceCoordinates, destinationCoordinates)
-
+            setIsLoading(false)
         } catch (error) {
+            setIsLoading(false)
+            handleOpenModalError()
             console.error('Error fetching coordinates:', error);
         }
     };
     
-    const handleNavigate = () => {
-        navigate('/results');
-    }
+    const handleNavigate = () => navigate('/results');
+
 
     //Code from chatgpt using the Haversine formula. The distance will be calculated in kilometers.
     const toRadians = (degrees) => {
@@ -75,6 +80,9 @@ export const DistanceCalculatorContainer = () => {
                 handleSearch={handleSearch}
                 handleNavigate={handleNavigate}
                 distanceCalculated={distanceCalculated}
+                isLoading={isLoading}
+                openModalError={openModalError}
+                handleCloseModalError={handleCloseModalError}
             />
         </>
     );

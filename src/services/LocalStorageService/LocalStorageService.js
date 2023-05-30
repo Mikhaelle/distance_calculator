@@ -1,5 +1,3 @@
-import { RestService } from '../RestService/RestService';
-
 export class LocalStorageService {
   static instance = null;
 
